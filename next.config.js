@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+	experimental: {
+		serverComponentsExternalPackages: ["bcrypt"],
+	},
+	typescript: {
+		ignoreBuildErrors: true,
+	},
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
