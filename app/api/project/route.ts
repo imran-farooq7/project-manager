@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
 	// console.log(jwt, "jwt from project api");
 	const data = await req.json();
 	const path = req.nextUrl.pathname;
+	// console.log(path, "path from project api");
 	const name = data;
 	// console.log(data, "data from project api");
 	const user = await validateJWT(jwt);
@@ -18,6 +19,6 @@ export async function POST(req: NextRequest) {
 			name,
 		},
 	});
-	revalidatePath(path);
+	revalidatePath("/home");
 	return NextResponse.json({ message: "Project created successfully" });
 }
