@@ -19,6 +19,9 @@ export async function POST(req: NextRequest) {
 			name,
 		},
 	});
-	revalidatePath("/home");
-	return NextResponse.json({ message: "Project created successfully" });
+
+	// revalidatePath("/home");
+	return NextResponse.json({
+		message: "Project created successfully",
+	});
 }

@@ -13,6 +13,7 @@ export const validateJWT = async (jwt: string) => {
 
 export default async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
+	// console.log(pathname, "middleware pathname");
 	if (
 		pathname.startsWith("/_next") ||
 		pathname.startsWith("/api") ||
@@ -23,9 +24,10 @@ export default async function middleware(req: NextRequest) {
 	) {
 		return NextResponse.next();
 	}
-	const jwt = req.cookies.get(process.env.COOKIE_NAME);
+	const jwt = req.cookies.get(process.env.COOKIE_NAME as string);
 	// console.log(jwt, "cookie val from middleware");
 	if (!jwt) {
+		// console.log(req.nextUrl, "jwt not found");
 		req.nextUrl.pathname = "/signin";
 		return NextResponse.redirect(req.nextUrl);
 	}

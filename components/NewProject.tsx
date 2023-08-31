@@ -4,17 +4,20 @@ import { useState } from "react";
 import Modal from "react-modal";
 import Button from "./Button";
 import Input from "./Input";
+import { useRouter } from "next/navigation";
 Modal.setAppElement("#modal");
 const NewProject = () => {
 	const [modalIsOpen, setIsOpen] = useState(false);
 	const openModal = () => setIsOpen(true);
 	const closeModal = () => setIsOpen(false);
 	const [name, setName] = useState("");
+	const router = useRouter();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await createProject(name);
 		closeModal();
+		router.refresh();
 	};
 
 	return (
